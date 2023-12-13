@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         Gears = _playerDataSO.Gears;
     }
 
-    public void UpdateStat(StatType type, int statNum)
+    public void IncreaseStat(StatType type, int statNum)
     {
         switch (type)
         {
@@ -57,6 +57,25 @@ public class Player : MonoBehaviour
                 break;
             case StatType.CRITICAL:
                 CriticalPower += statNum;
+                break;
+        }
+    }
+
+    public void DecreaseStat(StatType type, int statNum)
+    {
+        switch (type)
+        {
+            case StatType.ATTACK:
+                AttackPower -= statNum;
+                break;
+            case StatType.DEFENSE:
+                DefensePower -= statNum;
+                break;
+            case StatType.HP:
+                MaxHp -= statNum;
+                break;
+            case StatType.CRITICAL:
+                CriticalPower -= statNum;
                 break;
         }
     }

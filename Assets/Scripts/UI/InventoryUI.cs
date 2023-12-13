@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] EquipPanelUI _equipPanelUI;
+    [SerializeField] private EquipPanelUI _equipPanelUI;
 
     [SerializeField] private GameObject _buttonPanel;
     [SerializeField] private GameObject _equipPanel;
 
     [SerializeField] private List<GameObject> _inventoryObject;
     [SerializeField] private List<Image> _inventoryButtonsImage;
+    [SerializeField] private List<GameObject> _inventoryEquipment;
 
     private List<Button> _buttons;
 
@@ -45,9 +46,23 @@ public class InventoryUI : MonoBehaviour
 
             Color originColor = _inventoryButtonsImage[i].color;
             _inventoryButtonsImage[i].color = new Color(originColor.r, originColor.g, originColor.b, 1f);
+
+            if (player.Gears[i].IsEquip)
+                _inventoryEquipment[i].SetActive(true);
         }
     }
 
+    public void UpdateEquipImage()
+    {
+        // temp
+        for (int i = 0; i<player.Gears.Count; ++i)
+        {
+            if (player.Gears[i].IsEquip)
+                _inventoryEquipment[i].SetActive(true);
+            else
+                _inventoryEquipment[i].SetActive(false);
+        }
+    }
 
     #region Button
 

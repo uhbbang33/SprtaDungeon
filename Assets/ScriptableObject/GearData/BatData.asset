@@ -18,3 +18,4 @@ MonoBehaviour:
   Description: "\uC900\uD615\uB2D8\uC758 \uC57C\uAD6C\uBC29\uB9DD\uC774"
   Price: 1500
   GearSprite: {fileID: 21300000, guid: 027f7bec899a67244b8abdd71152c232, type: 3}
+  IsEquip: 0

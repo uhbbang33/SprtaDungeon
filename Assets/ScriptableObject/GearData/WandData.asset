@@ -18,3 +18,4 @@ MonoBehaviour:
   Description: "\uC544\uB9C8\uB3C4 \uAC15\uB825\uD574\uC9C8 \uC218 \uC788\uB294 \uC9C0\uD321\uC774"
   Price: 1000
   GearSprite: {fileID: 21300000, guid: 9ae8af36797aa0b4a866cb048dcbce62, type: 3}
+  IsEquip: 0

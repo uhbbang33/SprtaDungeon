@@ -14,5 +14,5 @@ public class GearSO : ScriptableObject
     public string Description;
     public int Price;
     public Sprite GearSprite;
-    public bool isEquip;
+    public bool IsEquip;
 }

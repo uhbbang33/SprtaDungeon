@@ -19,8 +19,8 @@ public class StatusPanelUI : MonoBehaviour
         player = GameManager.Instance.player;
         InitializeUI();
     }
-    
-    private void InitializeUI()
+
+    public void InitializeUI()
     {
         _playerAttackPowerText.text = player.AttackPower.ToString();
         _playerDefensePowerText.text = player.DefensePower.ToString();

@@ -15,18 +15,22 @@ public class EquipPanelUI : MonoBehaviour
 
     [SerializeField] private List<Sprite> _gearTypeSpriteList;
 
+    [SerializeField] private StatusPanelUI _statusPanelUI;
+    [SerializeField] private InventoryUI _inventoryUI;
+
     GearSO _gearSO;
     Player _player;
 
     private void Start()
     {
         gameObject.SetActive(false);
-        _gearSO = new GearSO();
         _player = GameManager.Instance.player;
     }
 
     public void UpdateEquipPanel(GearSO gearSO)
     {
+        _gearSO = gearSO;
+
         _gearImage.sprite = gearSO.GearSprite;
         _gearName.text = gearSO.GearName;
         _gearDescription.text = gearSO.Description;
@@ -36,7 +40,6 @@ public class EquipPanelUI : MonoBehaviour
 
         _gearTypeText.text = gearSO.Type.ToString();
         _gearStat.text = gearSO.Stat.ToString();
-        _gearSO = gearSO;
     }
 
 
@@ -44,9 +47,24 @@ public class EquipPanelUI : MonoBehaviour
 
     public void EquipGear()
     {
-        _player.UpdateStat(_gearSO.Type, _gearSO.Stat);
+        _statusPanelUI.InitializeUI();
+
+        if (_gearSO.IsEquip)
+        {
+            _gearSO.IsEquip = false;
+            _player.DecreaseStat(_gearSO.Type, _gearSO.Stat);
+        }
+        else
+        {
+            _gearSO.IsEquip = true;
+            _player.IncreaseStat(_gearSO.Type, _gearSO.Stat);
+        }
+
+        _inventoryUI.UpdateEquipImage();
+
+        gameObject.SetActive(false);
     }
-    
+
     public void CancelEquipPanel()
     {
         gameObject.SetActive(false);
