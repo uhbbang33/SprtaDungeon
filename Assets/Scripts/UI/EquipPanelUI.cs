@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class EquipPanelUI : MonoBehaviour
 {
-    // GameObject로 바꿔야 하나?
     [SerializeField] private Image _gearImage;
     [SerializeField] private TextMeshProUGUI _gearName;
     [SerializeField] private TextMeshProUGUI _gearDescription;
@@ -16,10 +15,14 @@ public class EquipPanelUI : MonoBehaviour
 
     [SerializeField] private List<Sprite> _gearTypeSpriteList;
 
+    GearSO _gearSO;
+    Player _player;
 
     private void Start()
     {
         gameObject.SetActive(false);
+        _gearSO = new GearSO();
+        _player = GameManager.Instance.player;
     }
 
     public void UpdateEquipPanel(GearSO gearSO)
@@ -31,10 +34,9 @@ public class EquipPanelUI : MonoBehaviour
         int gearTypeIndex = (int)gearSO.Type;
         _gearTypeImage.sprite = _gearTypeSpriteList[gearTypeIndex];
 
-        // enum을 tostring으로 바꾸면 변할까?
         _gearTypeText.text = gearSO.Type.ToString();
         _gearStat.text = gearSO.Stat.ToString();
-
+        _gearSO = gearSO;
     }
 
 
@@ -42,8 +44,13 @@ public class EquipPanelUI : MonoBehaviour
 
     public void EquipGear()
     {
-
+        _player.UpdateStat(_gearSO.Type, _gearSO.Stat);
     }
-
+    
+    public void CancelEquipPanel()
+    {
+        gameObject.SetActive(false);
+    }
+    
     #endregion
 }

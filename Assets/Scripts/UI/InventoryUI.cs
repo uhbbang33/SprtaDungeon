@@ -23,12 +23,15 @@ public class InventoryUI : MonoBehaviour
     { 
         player = GameManager.Instance.player;
         InitializeInventory();
-        
+
         _buttons = new List<Button>();
-        for (int i = 0; i < _inventoryObject.Count; ++i)
+        for (int i = 0; i < player.Gears.Count; ++i)
         {
             _buttons.Add(_inventoryObject[i].GetComponent<Button>());
-            _buttons[i].onClick.AddListener(() => ApplyGearInfoToEquipPanel(i));
+
+            // TIL
+            int index = i;
+            _buttons[i].onClick.AddListener(() => ApplyGearInfoToEquipPanel(_buttons[index]));
         }
     }
 
@@ -48,9 +51,18 @@ public class InventoryUI : MonoBehaviour
 
     #region Button
 
-    private void ApplyGearInfoToEquipPanel(int buttonNum)
+    private void ApplyGearInfoToEquipPanel(Button button)
     {
-        _equipPanelUI.UpdateEquipPanel(player.Gears[buttonNum]);
+        int buttonNum = _buttons.IndexOf(button);
+
+        if (player.Gears.Count < buttonNum)
+        {
+            // temp
+            GearSO so = new GearSO();
+            _equipPanelUI.UpdateEquipPanel(so);
+        }
+        else
+            _equipPanelUI.UpdateEquipPanel(player.Gears[buttonNum]);
     }
 
     public void ShowEquipPanel()

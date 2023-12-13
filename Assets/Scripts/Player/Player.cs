@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -39,5 +40,24 @@ public class Player : MonoBehaviour
         MaxHp = _playerDataSO.MaxHp;
         CriticalPower = _playerDataSO.CriticalPower;
         Gears = _playerDataSO.Gears;
+    }
+
+    public void UpdateStat(StatType type, int statNum)
+    {
+        switch (type)
+        {
+            case StatType.ATTACK:
+                AttackPower += statNum;
+                break;
+            case StatType.DEFENSE:
+                DefensePower += statNum;
+                break;
+            case StatType.HP:
+                MaxHp += statNum;
+                break;
+            case StatType.CRITICAL:
+                CriticalPower += statNum;
+                break;
+        }
     }
 }
