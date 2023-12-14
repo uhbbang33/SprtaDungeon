@@ -47,6 +47,7 @@ public class MainUI : MonoBehaviour
     {
         _buttonPanel.SetActive(false);
         _statusPanel.SetActive(true);
+        _statusPanel.GetComponent<StatusPanelUI>().InitializeUI();
     }
 
     public void ShowInventoryPanel()

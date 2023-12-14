@@ -46,10 +46,9 @@ public class InventoryUI : MonoBehaviour
 
             Color originColor = _inventoryButtonsImage[i].color;
             _inventoryButtonsImage[i].color = new Color(originColor.r, originColor.g, originColor.b, 1f);
-
-            if (player.Gears[i].IsEquip)
-                _inventoryEquipment[i].SetActive(true);
         }
+
+        UpdateEquipImage();
     }
 
     public void UpdateEquipImage()

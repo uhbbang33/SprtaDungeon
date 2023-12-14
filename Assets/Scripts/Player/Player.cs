@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         InitializePlayer();
+        ApplyGearStat();
     }
     private void InitializePlayer()
     {
@@ -40,6 +41,13 @@ public class Player : MonoBehaviour
         MaxHp = _playerDataSO.MaxHp;
         CriticalPower = _playerDataSO.CriticalPower;
         Gears = _playerDataSO.Gears;
+    }
+
+    private void ApplyGearStat()
+    {
+        foreach (GearSO gear in Gears)
+            if (gear.IsEquip)
+                IncreaseStat(gear.Type, gear.Stat);
     }
 
     public void IncreaseStat(StatType type, int statNum)

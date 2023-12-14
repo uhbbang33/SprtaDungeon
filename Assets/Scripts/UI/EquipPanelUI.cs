@@ -47,8 +47,6 @@ public class EquipPanelUI : MonoBehaviour
 
     public void EquipGear()
     {
-        _statusPanelUI.InitializeUI();
-
         if (_gearSO.IsEquip)
         {
             _gearSO.IsEquip = false;
